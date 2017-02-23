@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 exports.resolvedPath = function(directoryPath, fileName)
 {
 	var mergedPath = path.resolve(directoryPath, fileName);
