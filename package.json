@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/moosmank/it410-promises/issues"
   },
-  "homepage": "https://github.com/moosmank/it410-promises#readme"
+  "homepage": "https://github.com/moosmank/it410-promises#readme",
+  "dependencies": {
+    "request": "^2.79.0"
+  },
+  "devDependencies": {}
 }
