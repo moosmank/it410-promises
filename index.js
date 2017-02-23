@@ -42,7 +42,7 @@ exports.readDirFiles = function (directoryPath)
 		function readTheseDirFiles()
 		{
 			var dir = readDir(directoryPath);
-			for files in dir
+			for files in dir                                              //Promise.each(dir, (files) => resolve (readFile(resolvedPath(directoryPath, file)));
 			{
 				resolve (readFile(resolvedPath(directoryPath, file)));
 			}
