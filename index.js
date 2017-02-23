@@ -22,7 +22,7 @@ exports.readDir = function (directoryPath)
 {
 	return new Promise(function(resolve, reject)
 	{
-		fs.readDir(directoryPath, 'utf8', (err, files) => {
+		fs.readdir(directoryPath, 'utf8', (err, files) => {
 			if (err) reject(err);
 			else resolve (files);
 		});
