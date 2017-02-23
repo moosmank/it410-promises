@@ -11,42 +11,35 @@ exports.readFile = function (filePath)
 {
 	return new Promise(function(resolve, reject)
 	{
-		function readThisFile()
-		{
-			fs.readFile(filePath, 'utf8', (err, data) => {
-				if (err) reject(err);
-				resolve (data);
-			});
+		fs.readFile(filePath, 'utf8', (err, data) => {
+			if (err) reject(err);
+			else resolve (data);
 		});
-	}
+	});
 }
 
 exports.readDir = function (directoryPath)
 {
 	return new Promise(function(resolve, reject)
 	{
-		function readThisDir()
-		{
-			fs.readDir(directoryPath, 'utf8', (err, files) => {
-				if (err) reject(err);
-				resolve (files);
-			});
+		fs.readDir(directoryPath, 'utf8', (err, files) => {
+			if (err) reject(err);
+			else resolve (files);
 		});
-	}
+	});
 }
 
 exports.readDirFiles = function (directoryPath)
 {
-	return new Promise(function(resolve, reject)
-	{
-		function readTheseDirFiles()
-		{
-			var dir = readDir(directoryPath);
-			for files in dir                                              //Promise.each(dir, (files) => resolve (readFile(resolvedPath(directoryPath, file)));
+	var dir = exports.readDir(directoryPath)
+		.then(function(files) {
+			var fileContents = [];
+			for (var i=0; i < files.length; i++)
 			{
-				resolve (readFile(resolvedPath(directoryPath, file)));
+				var filePath = exports.resolvedPath(directoryPath, files[i]);
+				fileContents.push(exports.readFile(filePath));
 			}
-			//reject; //directory or file within it can't be read
-		};
-	});
+			return Promise.all(fileContents);
+		});
+	return dir;
 }
