@@ -44,7 +44,7 @@ exports.readDirFiles = function (directoryPath)
 			var dir = readDir(directoryPath);
 			for files in dir
 			{
-				readFile(resolvedPath(directoryPath, file));
+				resolve (readFile(resolvedPath(directoryPath, file)));
 			}
 			//reject; //directory or file within it can't be read
 		};
